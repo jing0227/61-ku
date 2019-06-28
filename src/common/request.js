@@ -15,8 +15,12 @@ AJAX.interceptors.request.use(
   function(config) {
     // 在发送请求之前
     if (process.env.NODE_ENV === "development") {
-      config.url = `http://${location.host}` + config.url;
+      // config.url = `http://${location.host}` + config.url;
     }
+    // if (localStorage.token) {
+    //   //判断token是否存在
+    //   config.headers.Authorization = localStorage.token;
+    // }
     return config;
   },
   function(error) {

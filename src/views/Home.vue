@@ -2,9 +2,18 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" />
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
-    <p @click="changeUserInfo('jerry')" class="green">
-      test vuex: {{ getUserInfo }}
+    <p>
+      vue过滤器：
+      <br />
+      时间戳：{{ 1555179366 | timeFilter }}
+      <br />
+      手机格式化：{{ 16531959057 | formatPhone }}
+      <br />
+      千分位分隔符：{{ 5000039 | toThousands }}
     </p>
+    <button @click="changeUserInfo('jerry')" class="green">
+      test vuex: {{ getUserInfo }}
+    </button>
   </div>
 </template>
 
