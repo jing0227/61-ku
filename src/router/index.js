@@ -1,8 +1,26 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/Home.vue";
+import userLayout from "@/layouts/userLayout.vue";
 
 Vue.use(Router);
+
+const constantRouterMap = [
+  {
+    path: "/user",
+    component: userLayout,
+    redirect: "/user/login",
+    hidden: true,
+    children: [
+      {
+        path: "login",
+        name: "login",
+        component: () =>
+          import(/* webpackChunkName: "user" */ "@/views/user/Login")
+      }
+    ]
+  }
+];
 
 const router = new Router({
   routes: [
@@ -23,7 +41,8 @@ const router = new Router({
       // which is lazy-loaded when the route is visited.
       component: () =>
         import(/* webpackChunkName: "about" */ "../views/About.vue")
-    }
+    },
+    ...constantRouterMap
   ]
 });
 
