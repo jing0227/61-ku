@@ -1,13 +1,18 @@
 <template>
   <div id="userLayout">
     <div class="container">
-      <div class="top">
-        <div class="header">Ant Design 是西湖区最具影响力的 Web 设计规范</div>
-      </div>
-
       <router-view />
-
-      <div class="footer"></div>
     </div>
   </div>
 </template>
+<style lang="less" scoped>
+#userLayout {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url("http://wx.eduxdesign.com/web/assets/base/denglu.png") center /
+    cover no-repeat;
+}
+</style>

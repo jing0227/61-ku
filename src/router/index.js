@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "../views/Home.vue";
+import Home from "../views/home";
 import userLayout from "@/layouts/userLayout.vue";
 
 Vue.use(Router);
@@ -16,7 +16,7 @@ const constantRouterMap = [
         path: "login",
         name: "login",
         component: () =>
-          import(/* webpackChunkName: "user" */ "@/views/user/Login")
+          import(/* webpackChunkName: "login" */ "@/views/common/login")
       }
     ]
   }
@@ -25,22 +25,23 @@ const constantRouterMap = [
 const router = new Router({
   routes: [
     {
+      // 首页
       path: "/",
       name: "home",
+      component: Home
+    },
+    {
+      path: "/search",
+      name: "search",
       // meta: {
       //   // 该路由项需要权限校验
       //   requireAuth: true
       // },
-      component: Home
-    },
-    {
-      path: "/about",
-      name: "about",
       // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
+      // this generates a separate chunk (search.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () =>
-        import(/* webpackChunkName: "about" */ "../views/About.vue")
+        import(/* webpackChunkName: "search" */ "../views/home/search.vue")
     },
     ...constantRouterMap
   ]

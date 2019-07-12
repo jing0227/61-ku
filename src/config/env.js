@@ -8,7 +8,7 @@
  */
 
 const dev = {
-  routerMode: "hash",
+  routerMode: "history",
 
   // 自定义反向代理
   baseUrl: `${location.origin}`,
