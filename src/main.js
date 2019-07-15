@@ -13,6 +13,7 @@ import {
   Dropdown,
   Table,
   Tabs,
+  TabPane,
   // Pagination,
   // Dialog,
   // Autocomplete,
@@ -45,7 +46,6 @@ import {
   // BreadcrumbItem,
   // Form,
   // FormItem,
-  // TabPane,
   // Tag,
   // Tree,
   // Alert,
@@ -92,6 +92,7 @@ Vue.use(Carousel);
 Vue.use(Dropdown);
 Vue.use(Table);
 Vue.use(Tabs);
+Vue.use(TabPane);
 // Vue.use(Pagination);
 // Vue.use(Dialog);
 // Vue.use(Autocomplete);
@@ -124,7 +125,6 @@ Vue.use(Tabs);
 // Vue.use(BreadcrumbItem);
 // Vue.use(Form);
 // Vue.use(FormItem);
-// Vue.use(TabPane);
 // Vue.use(Tag);
 // Vue.use(Tree);
 // Vue.use(Alert);

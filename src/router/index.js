@@ -2,10 +2,31 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "../views/home";
 import userLayout from "@/layouts/userLayout.vue";
+import homeLayout from "@/layouts/homeLayout.vue";
 
 Vue.use(Router);
 
-const constantRouterMap = [
+// 通用路由
+const commonRouterMap = [
+  {
+    // 首页
+    path: "/",
+    name: "home",
+    component: Home
+  },
+  {
+    path: "/search",
+    name: "search",
+    // meta: {
+    //   // 该路由项需要权限校验
+    //   requireAuth: true
+    // },
+    // route level code-splitting
+    // this generates a separate chunk (search.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "search" */ "../views/home/search.vue")
+  },
   {
     path: "/user",
     component: userLayout,
@@ -22,28 +43,97 @@ const constantRouterMap = [
   }
 ];
 
+// 活动路由
+const activityRouterMap = [
+  {
+    path: "/activity",
+    component: homeLayout,
+    redirect: "/activity/index",
+    hidden: true,
+    children: [
+      {
+        path: "index",
+        name: "activityIndex",
+        component: () =>
+          import(/* webpackChunkName: "index" */ "@/views/activity/index")
+      },
+      {
+        path: "list",
+        name: "activityList",
+        component: () =>
+          import(/* webpackChunkName: "list" */ "@/views/activity/list")
+      },
+      {
+        path: "detail",
+        name: "activityDetail",
+        component: () =>
+          import(/* webpackChunkName: "detail" */ "@/views/activity/detail")
+      }
+    ]
+  }
+];
+
+// 图片路由
+const imageRouterMap = [
+  {
+    path: "/image",
+    component: homeLayout,
+    redirect: "/image/index",
+    hidden: true,
+    children: [
+      {
+        path: "index",
+        name: "imageIndex",
+        component: () =>
+          import(/* webpackChunkName: "index" */ "@/views/image/index")
+      },
+      {
+        path: "list",
+        name: "imageList",
+        component: () =>
+          import(/* webpackChunkName: "list" */ "@/views/image/list")
+      },
+      {
+        path: "detail",
+        name: "imageDetail",
+        component: () =>
+          import(/* webpackChunkName: "detail" */ "@/views/image/detail")
+      }
+    ]
+  }
+];
+
+// 绘本路由
+const booksRouterMap = [
+  {
+    path: "/books",
+    component: homeLayout,
+    redirect: "/books/index",
+    hidden: true,
+    children: [
+      {
+        path: "list",
+        name: "booksList",
+        component: () =>
+          import(/* webpackChunkName: "list" */ "@/views/books/list")
+      },
+      {
+        path: "detail",
+        name: "booksDetail",
+        component: () =>
+          import(/* webpackChunkName: "detail" */ "@/views/books/detail")
+      }
+    ]
+  }
+];
+
 const router = new Router({
   routes: [
-    {
-      // 首页
-      path: "/",
-      name: "home",
-      component: Home
-    },
-    {
-      path: "/search",
-      name: "search",
-      // meta: {
-      //   // 该路由项需要权限校验
-      //   requireAuth: true
-      // },
-      // route level code-splitting
-      // this generates a separate chunk (search.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "search" */ "../views/home/search.vue")
-    },
-    ...constantRouterMap
+    ...commonRouterMap,
+    ...activityRouterMap,
+    ...imageRouterMap,
+    ...booksRouterMap,
+    { path: "*", redirect: "/user/login" }
   ]
 });
 
